@@ -1,6 +1,6 @@
 angular.module('login.services', [])
     .factory('API', function($rootScope, $http, $ionicLoading, $window, $ionicHistory) {
-        var base = "http://localhost:9804";
+        var base = "https://gamificationapp.herokuapp.com";
 
         $rootScope.show = function(text) {
             $rootScope.loading = $ionicLoading.show({
