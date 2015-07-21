@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('login', ['ionic', 'login.controllers', 'login.services'])
+angular.module('login', ['ionic', 'login.controllers', 'login.services', 'login.directives'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -21,11 +21,22 @@ angular.module('login', ['ionic', 'login.controllers', 'login.services'])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-        .state('entrar', {
+        .state('app', {
+        url: "/app",
+        abstract: true,
+        templateUrl: "templates/menu.html",
+    })
+
+    .state('entrar', {
         url: "/entrar",
         templateUrl: "templates/login.html",
         controller: "loginController"
+    })
 
+    .state('subir', {
+        url: "/subir",
+        templateUrl: "templates/menusubir.html",
+        controller: "uploadController"
     })
 
     .state('resetPassword', {
@@ -35,24 +46,43 @@ angular.module('login', ['ionic', 'login.controllers', 'login.services'])
 
     })
 
-    .state('list', {
-        url: "/list",
-        templateUrl: "templates/logueado.html",
-        controller: "myListCtrl"
+    .state('app.primerNivel', {
+        url: "/primerNivel",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/primerNivel.html",
+                controller: "mapController"
+            }
+        }
 
     })
+
+    .state('app.preguntas', {
+        url: "/preguntas",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/preguntas.html",
+                controller: "preguntasController"
+            }
+        }
+
+    })
+
 
     .state('registrar', {
         url: "/registrar",
         templateUrl: "templates/registrar.html",
         controller: "RegistroController"
-
     })
 
-    .state('modificar', {
+    .state('app.modificar', {
         url: "/modificar",
-        templateUrl: "templates/modificar.html",
-        controller: "modificarController"
+        views: {
+            "menuContent": {
+                templateUrl: "templates/modificar.html",
+                controller: "modificarController"
+            }
+        }
 
     })
 
@@ -70,6 +100,62 @@ angular.module('login', ['ionic', 'login.controllers', 'login.services'])
 
     })
 
+    .state('app.ranking', {
+        url: "/ranking",
+        views: {
+            "menuContent": {
+                templateUrl: "templates/ranking.html",
+                controller: "rankingController"
+            }
+        }
+    })
+
+    .state('app.segundoNivel', {
+        url: "/segundoNivel",
+        views: {
+            "menuContent": {
+                templateUrl: "templates/segundoNivel.html",
+                controller: "mapController"
+            }
+        }
+    })
+
+     .state('app.tercerNivel', {
+        url: "/tercerNivel",
+        views: {
+            "menuContent": {
+                templateUrl: "templates/tercerNivel.html",
+                controller: "mapController"
+            }
+        }
+    })
+
+    .state('app.objetivos', {
+        url: "/objetivos",
+        views: {
+            "menuContent": {
+                templateUrl: "templates/objetivos.html",
+                controller: "objetivosController"
+            }
+        }
+
+    })
+
+    .state('app.perfil', {
+        url: "/perfil",
+        views: {
+            "menuContent": {
+                templateUrl: "templates/perfil.html",
+                controller: "perfilController"
+            }
+        }
+    })
+
+    .state('home', {
+        url: "/home",
+        templateUrl: "templates/home.html",
+        controller: "homeController"
+    })
 
     $urlRouterProvider.otherwise('/entrar');
 });
